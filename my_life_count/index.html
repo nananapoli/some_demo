@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>my Life count</title>
+  <style>
+    body {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #life-count {
+      /* position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); */
+      font-size: 20px;
+      line-height: 28px;
+      /* min-width: 90vw; */
+    }
+
+    #life-count span {
+      color: orangered;
+    }
+  </style>
+</head>
+<body>
+
+
+  <div id="life-count">
+    我今年<span id="year"></span>岁零<span id="zero-day"></span>天，有<span id="life-day-spent"></span>天已经彻底过去了<br /><br />
+    假设我能活到<span id="assume-long"></span>岁（积极点），也就是<span id="assume-day"></span>天<br /><br />
+    那么现在已经过了<span id="percentage-already"></span>%  <br /><br />
+    对于接下来的<span id="percentage-left"></span>%，打算怎么度过呢？<br /><br />
+    还有，今天是<span id="current-year"></span>年的第<span id="day-of-current-year"></span>天哦！
+  </div>
+  
+  <script>
+    const dayOfRange = (start, end, type) => {
+      return type === 'floor' ? Math.floor((end - start) / 1000 / 60 /60 / 24) : Math.ceil((end - start) / 1000 / 60 /60 / 24);
+    }
+
+    const now = new Date();
+
+    const currentYear = now.getFullYear();
+
+    const dayOfCurrentYear = dayOfRange(new Date(`${currentYear}/01/01 00:00:00`), now, 'ceil');
+
+    const myBirthDay = new Date('1996/02/24 02:00:00');
+
+    const assumptiveLifeLengthYear = 70;
+
+    const assumptiveLifeLengthDay = 70  * 365 + 17;
+
+    const lifeDaySpent = dayOfRange(myBirthDay, now, 'floor');
+
+    const myAgeYear = Math.floor(lifeDaySpent / 365);
+
+    const myAgeDay = dayOfRange(new Date(`${currentYear}/02/24 02:00:00`), now, 'floor');
+
+    const percentageAlready = (lifeDaySpent / assumptiveLifeLengthDay * 100).toFixed(5);
+
+    const percentageLeft = (100 - percentageAlready).toFixed(5);
+
+    const yearEl = document.getElementById('year');
+    const zeroDayEl = document.getElementById('zero-day');
+    const lifeDaySpentEl = document.getElementById('life-day-spent');
+    const assumeLongEl = document.getElementById('assume-long');
+    const assumeDayEl = document.getElementById('assume-day');
+    const percentageAlreadyEl = document.getElementById('percentage-already');
+    const percentageLeftEl = document.getElementById('percentage-left');
+    const currentYearEl = document.getElementById('current-year');
+    const dayOfCurrentYearEl = document.getElementById('day-of-current-year');
+
+    yearEl.innerText = myAgeYear;
+    zeroDayEl.innerText = myAgeDay;
+    lifeDaySpentEl.innerText = lifeDaySpent;
+    assumeLongEl.innerText = assumptiveLifeLengthYear;
+    assumeDayEl.innerText = assumptiveLifeLengthDay;
+    percentageAlreadyEl.innerText = percentageAlready;
+    percentageLeftEl.innerText = percentageLeft;
+    currentYearEl.innerText = currentYear;
+    dayOfCurrentYearEl.innerText = dayOfCurrentYear;
+  </script>
+</body>
+</html>

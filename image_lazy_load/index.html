@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+
+    img {
+      display: block;
+      width: 500px;
+      height: 280px;
+      margin: 50px auto;
+      background: #eee;
+    }
+    
+  </style>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+
+  <img
+    src="https://pic.36krcnd.com/201903/05090001/bhkqtne6bzta2hlf"
+    data-src
+    alt="test"
+    class
+  />
+
+  <img
+    src="https://pic.36krcnd.com/201903/05090001/bhkqtne6bzta2hlf"
+    data-src
+    alt="test"
+    class
+  />
+
+  <img
+    src="https://pic.36krcnd.com/201903/05090001/bhkqtne6bzta2hlf"
+    data-src
+    alt="test"
+    class
+  />
+
+  <img
+    src
+    data-src="https://pic.36krcnd.com/201903/05090001/bhkqtne6bzta2hlf"
+    alt="test"
+    class="lazy"
+  />
+
+  <img
+    src
+    data-src="https://pic.36krcnd.com/201903/05090001/bhkqtne6bzta2hlf"
+    alt="test"
+    class="lazy"
+  />
+
+  <img
+    src
+    data-src="https://pic.36krcnd.com/201903/05090001/bhkqtne6bzta2hlf"
+    alt="test"
+    class="lazy"
+  />
+
+  <img
+    src
+    data-src="https://pic.36krcnd.com/201903/05090001/bhkqtne6bzta2hlf"
+    alt="test"
+    class="lazy"
+  />
+
+  <img
+    src
+    data-src="https://pic.36krcnd.com/201903/05090001/bhkqtne6bzta2hlf"
+    alt="test"
+    class="lazy"
+  />
+
+  <img
+    src
+    data-src="https://pic.36krcnd.com/201903/05090001/bhkqtne6bzta2hlf"
+    alt="test"
+    class="lazy"
+  />
+
+  <img
+    src
+    data-src="https://pic.36krcnd.com/201903/05090001/bhkqtne6bzta2hlf"
+    alt="test"
+    class="lazy"
+  />
+  
+
+
+
+  <script>
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const lazyImgs = document.querySelectorAll('.lazy');
+      let lazyLoadTimeout;
+
+      function lazyLoad () {
+        if(lazyLoadTimeout) {
+          clearTimeout(lazyLoadTimeout);
+        }
+
+        let timeout = setTimeout(() => {
+          const scrollTop = window.pageYOffset;
+          lazyImgs.forEach(el => {
+            if (el.offsetTop < scrollTop + window.innerHeight) {
+              // 把data-src的值赋给src
+              el.src = el.dataset.src;
+              el.classList.remove('lazy');
+            }
+          });
+
+          if(lazyImgs.length === 0) {
+            document.removeEventListener('scroll', lazyLoad);
+            window.removeEventListener('resize', lazyLoad);
+            window.removeEventListener('orientationChange', lazyLoad);
+          }
+        }, 20);
+      }
+
+      document.addEventListener('scroll', lazyLoad);
+      window.addEventListener('resize', lazyLoad);
+      window.addEventListener('orientationChange', lazyLoad);
+
+    },false)
+
+
+    
+  </script>
+  <script src="./index.js"></script>
+</body>
+</html>
