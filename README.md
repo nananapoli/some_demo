@@ -1,4 +1,4 @@
 # some_demo
 just some demos
 
-[click here](https://note.youdao.com/)
+[click here](https://nananapoli.github.io/some_demo/)
