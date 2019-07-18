@@ -60,7 +60,7 @@
 
     const myAgeYear = Math.floor(lifeDaySpent / 365);
 
-    const myAgeDay = dayOfRange(new Date(`${currentYear}/02/24 02:00:00`), now, 'floor');
+    const myAgeDay = dayOfRange(new Date(`${currentYear}/02/24 02:00:00`), now, 'top');
 
     const percentageAlready = (lifeDaySpent / assumptiveLifeLengthDay * 100).toFixed(5);
 
