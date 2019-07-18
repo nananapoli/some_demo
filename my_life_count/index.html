@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>my Life count</title>
+  <link rel="shortcut icon" href="https://s2.ax1x.com/2019/07/17/ZqRakQ.png">
   <style>
     body {
       position: relative;
@@ -44,6 +45,10 @@
       return type === 'floor' ? Math.floor((end - start) / 1000 / 60 /60 / 24) : Math.ceil((end - start) / 1000 / 60 /60 / 24);
     }
 
+    const secondOfRange = (start, end) => {
+      return Math.floor((end - start) / 1000);
+    }
+
     const now = new Date();
 
     const currentYear = now.getFullYear();
@@ -56,15 +61,19 @@
 
     const assumptiveLifeLengthDay = 70  * 365 + 17;
 
+    let assumptiveLifeLengthSecond = assumptiveLifeLengthDay * 24 * 60 * 60;
+
     const lifeDaySpent = dayOfRange(myBirthDay, now, 'floor');
+
+    let secondSpent = secondOfRange(myBirthDay, now);
 
     const myAgeYear = Math.floor(lifeDaySpent / 365);
 
     const myAgeDay = dayOfRange(new Date(`${currentYear}/02/24 02:00:00`), now, 'top');
 
-    const percentageAlready = (lifeDaySpent / assumptiveLifeLengthDay * 100).toFixed(5);
+    let percentageAlready = (secondSpent / assumptiveLifeLengthSecond * 100).toFixed(8);
 
-    const percentageLeft = (100 - percentageAlready).toFixed(5);
+    let percentageLeft = (100 - percentageAlready).toFixed(8);
 
     const yearEl = document.getElementById('year');
     const zeroDayEl = document.getElementById('zero-day');
@@ -85,6 +94,17 @@
     percentageLeftEl.innerText = percentageLeft;
     currentYearEl.innerText = currentYear;
     dayOfCurrentYearEl.innerText = dayOfCurrentYear;
+
+    setInterval(() => {
+      const nowLively = new Date()
+      secondSpent = secondOfRange(myBirthDay, nowLively);
+      assumptiveLifeLengthSecond = assumptiveLifeLengthDay * 24 * 60 * 60;
+      percentageAlready = (secondSpent / assumptiveLifeLengthSecond * 100).toFixed(8);
+      percentageLeft = (100 - percentageAlready).toFixed(8);
+
+      percentageAlreadyEl.innerText = percentageAlready;
+      percentageLeftEl.innerText = percentageLeft;
+    }, 1000);
   </script>
 </body>
 </html>
