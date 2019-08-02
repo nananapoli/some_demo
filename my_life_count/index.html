@@ -33,7 +33,7 @@
 
 
   <div id="life-count">
-    今天是我<span id="year"></span>岁零<span id="zero-day"></span>天，有<span id="life-day-spent"></span>天已经彻底过去了<br /><br />
+    今天是我<span id="year"></span>岁<span id="zero-day"></span>天，有<span id="life-day-spent"></span>天已经彻底过去了<br /><br />
     假设我能活到<span id="assume-long"></span>岁（积极点），也就是<span id="assume-day"></span>天<br /><br />
     那么现在已经过了<span id="percentage-already"></span>%  <br /><br />
     对于接下来的<span id="percentage-left"></span>%，打算怎么度过呢？<br /><br />
@@ -53,7 +53,7 @@
 
     const currentYear = now.getFullYear();
 
-    const dayOfCurrentYear = dayOfRange(new Date(`${currentYear}/01/01 00:00:00`), now, 'ceil');
+    let dayOfCurrentYear = dayOfRange(new Date(`${currentYear}/01/01 00:00:00`), now, 'ceil');
 
     const myBirthDay = new Date('1996/02/24 02:00:00');
 
@@ -69,7 +69,7 @@
 
     const myAgeYear = Math.floor(lifeDaySpent / 365);
 
-    const myAgeDay = dayOfRange(new Date(`${currentYear}/02/24 02:00:00`), now, 'top');
+    let myAgeDay = dayOfRange(new Date(`${currentYear}/02/24 02:00:00`), now, 'top');
 
     let percentageAlready = (secondSpent / assumptiveLifeLengthSecond * 100).toFixed(8);
 
@@ -101,9 +101,13 @@
       assumptiveLifeLengthSecond = assumptiveLifeLengthDay * 24 * 60 * 60;
       percentageAlready = (secondSpent / assumptiveLifeLengthSecond * 100).toFixed(8);
       percentageLeft = (100 - percentageAlready).toFixed(8);
+      dayOfCurrentYear = dayOfRange(new Date(`${currentYear}/01/01 00:00:00`), now, 'ceil');
+      myAgeDay = dayOfRange(new Date(`${currentYear}/02/24 02:00:00`), now, 'top');
 
       percentageAlreadyEl.innerText = percentageAlready;
       percentageLeftEl.innerText = percentageLeft;
+      zeroDayEl.innerText = myAgeDay;
+      dayOfCurrentYear.innerText = dayOfCurrentYear;
     }, 1000);
   </script>
 </body>
