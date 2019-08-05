@@ -37,7 +37,8 @@
     假设我能活到<span id="assume-long"></span>岁（积极点），也就是<span id="assume-day"></span>天<br /><br />
     那么现在已经过了<span id="percentage-already"></span>%  <br /><br />
     对于接下来的<span id="percentage-left"></span>%，打算怎么度过呢？<br /><br />
-    还有，今天是<span id="current-year"></span>年的第<span id="day-of-current-year"></span>天哦！
+    还有，今天是<span id="current-year"></span>年的第<span id="current-day"></span>天，这一周是今年的第<span id="current-week"></span>周<br /><br />
+    今天也是我参加工作第<span id="career-year"></span>年第<span id="career-day"></span>天 
   </div>
   
   <script>
@@ -53,9 +54,13 @@
 
     const currentYear = now.getFullYear();
 
-    let dayOfCurrentYear = dayOfRange(new Date(`${currentYear}/01/01 00:00:00`), now, 'ceil');
+    let currentDay = dayOfRange(new Date(`${currentYear}/01/01 00:00:00`), now, 'ceil');
+
+    const currentWeek = Math.ceil(currentDay / 7);
 
     const myBirthDay = new Date('1996/02/24 02:00:00');
+
+    const careerStartDay = new Date('2018/6/27 10:00:00');
 
     const assumptiveLifeLengthYear = 70;
 
@@ -75,6 +80,13 @@
 
     let percentageLeft = (100 - percentageAlready).toFixed(8);
 
+    const careerDayTotal = dayOfRange(careerStartDay, now, 'floor');
+
+    const careerYear = Math.floor(careerDayTotal / 365);
+
+    const careerDay = careerDayTotal % 365
+    console.log(careerYear);
+
     const yearEl = document.getElementById('year');
     const zeroDayEl = document.getElementById('zero-day');
     const lifeDaySpentEl = document.getElementById('life-day-spent');
@@ -83,7 +95,10 @@
     const percentageAlreadyEl = document.getElementById('percentage-already');
     const percentageLeftEl = document.getElementById('percentage-left');
     const currentYearEl = document.getElementById('current-year');
-    const dayOfCurrentYearEl = document.getElementById('day-of-current-year');
+    const currentWeekEl = document.getElementById('current-week');
+    const currentDayEl = document.getElementById('current-day');
+    const careerYearEl = document.getElementById('career-year');
+    const careerDayEl = document.getElementById('career-day');
 
     yearEl.innerText = myAgeYear;
     zeroDayEl.innerText = myAgeDay;
@@ -93,7 +108,10 @@
     percentageAlreadyEl.innerText = percentageAlready;
     percentageLeftEl.innerText = percentageLeft;
     currentYearEl.innerText = currentYear;
-    dayOfCurrentYearEl.innerText = dayOfCurrentYear;
+    currentWeekEl.innerText = currentWeek;
+    currentDayEl.innerText = currentDay;
+    careerYearEl.innerText = careerYear;
+    careerDayEl.innerText = careerDay;
 
     setInterval(() => {
       const nowLively = new Date()
@@ -101,13 +119,13 @@
       assumptiveLifeLengthSecond = assumptiveLifeLengthDay * 24 * 60 * 60;
       percentageAlready = (secondSpent / assumptiveLifeLengthSecond * 100).toFixed(8);
       percentageLeft = (100 - percentageAlready).toFixed(8);
-      dayOfCurrentYear = dayOfRange(new Date(`${currentYear}/01/01 00:00:00`), now, 'ceil');
+      currentDay = dayOfRange(new Date(`${currentYear}/01/01 00:00:00`), now, 'ceil');
       myAgeDay = dayOfRange(new Date(`${currentYear}/02/24 02:00:00`), now, 'top');
 
       percentageAlreadyEl.innerText = percentageAlready;
       percentageLeftEl.innerText = percentageLeft;
       zeroDayEl.innerText = myAgeDay;
-      dayOfCurrentYear.innerText = dayOfCurrentYear;
+      currentDayEl.innerText = currentDay;
     }, 1000);
   </script>
 </body>
