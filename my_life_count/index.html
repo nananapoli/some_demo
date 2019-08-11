@@ -21,6 +21,8 @@
     #life-count {
       font-size: 20px;
       line-height: 28px;
+      max-width: 450px;
+      line-height: 30px;
     }
 
     #life-count span {
@@ -37,7 +39,7 @@
     假设我能活到<span id="assume-long"></span>岁（积极点），也就是<span id="assume-day"></span>天<br /><br />
     那么现在已经过了<span id="percentage-already"></span>%  <br /><br />
     对于接下来的<span id="percentage-left"></span>%，打算怎么度过呢？<br /><br />
-    还有，今天是<span id="current-year"></span>年的第<span id="current-day"></span>天，这一周是今年的第<span id="current-week"></span>周<br /><br />
+    还有，今天是<span id="current-year"></span>年的第<span id="current-day"></span>天，这一周是今年的第<span id="current-week"></span>周，今年已经过了<span id="current-percent"></span>%<br /><br />
     今天也是我参加工作第<span id="career-year"></span>年第<span id="career-day"></span>天 
   </div>
   
@@ -58,9 +60,11 @@
 
     const currentWeek = Math.ceil(currentDay / 7);
 
+    const currentPercent = (currentDay / 365 * 100).toFixed();
+
     const myBirthDay = new Date('1996/02/24 02:00:00');
 
-    const careerStartDay = new Date('2018/6/27 10:00:00');
+    const careerStartDay = new Date('2018/6/27 00:00:00');
 
     const assumptiveLifeLengthYear = 70;
 
@@ -84,8 +88,7 @@
 
     const careerYear = Math.floor(careerDayTotal / 365);
 
-    const careerDay = careerDayTotal % 365
-    console.log(careerYear);
+    const careerDay = careerDayTotal % 365;
 
     const yearEl = document.getElementById('year');
     const zeroDayEl = document.getElementById('zero-day');
@@ -97,6 +100,7 @@
     const currentYearEl = document.getElementById('current-year');
     const currentWeekEl = document.getElementById('current-week');
     const currentDayEl = document.getElementById('current-day');
+    const currentPercentEl = document.getElementById('current-percent');
     const careerYearEl = document.getElementById('career-year');
     const careerDayEl = document.getElementById('career-day');
 
@@ -110,6 +114,7 @@
     currentYearEl.innerText = currentYear;
     currentWeekEl.innerText = currentWeek;
     currentDayEl.innerText = currentDay;
+    currentPercentEl.innerText = currentPercent;
     careerYearEl.innerText = careerYear;
     careerDayEl.innerText = careerDay;
 
