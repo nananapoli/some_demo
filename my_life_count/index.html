@@ -91,6 +91,8 @@
 
     let myAgeDay = dayOfRange(new Date(`${currentYear}/02/24 02:00:00`), now, 'top');
 
+    if (myAgeDay < 0) myAgeDay = dayOfRange(new Date(`${currentYear - 1}/02/24 02:00:00`), now, 'top');
+
     let percentageAlready = (secondSpent / assumptiveLifeLengthSecond * 100).toFixed(8);
 
     let percentageLeft = (100 - percentageAlready).toFixed(8);
@@ -152,6 +154,7 @@
       percentageLeft = (100 - percentageAlready).toFixed(8);
       currentDay = dayOfRange(new Date(`${currentYear}/01/01 00:00:00`), now, 'ceil');
       myAgeDay = dayOfRange(new Date(`${currentYear}/02/24 02:00:00`), now, 'top');
+      if (myAgeDay < 0) myAgeDay = dayOfRange(new Date(`${currentYear - 1}/02/24 02:00:00`), now, 'top');
 
       percentageAlreadyEl.innerText = percentageAlready;
       percentageLeftEl.innerText = percentageLeft;
