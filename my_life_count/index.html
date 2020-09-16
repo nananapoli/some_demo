@@ -49,7 +49,7 @@
     对于接下来的<span id="percentage-left"></span>%，打算怎么度过呢？<br /><br />
     还有，今天是<span id="current-year"></span>年的第<span id="current-day"></span>天，这一周是今年的第<span id="current-week"></span>周，今年已经过了<span id="current-percent"></span>%<div id="countdown-wrapper" style="display: inline">，倒计时还剩<span id="countdown"></span>天</div><br /><br />
     今天也是我参加工作第<span id="career-year"></span>年第<span id="career-day"></span>天 <br /><br />
-    距离25岁还有<span id="days-to-25"></span>天
+    距离30岁还有<span id="days-to-30"></span>天
   </div>
   
   <script>
@@ -69,7 +69,7 @@
 
     const careerStartDay = new Date('2018/6/27 00:00:00');
 
-    const birthDayOf25 = new Date('2021/02/24 02:00:00');
+    const birthDayOf30 = new Date('2026/02/24 02:00:00');
 
     let currentDay = dayOfRange(new Date(`${currentYear}/01/01 00:00:00`), now, 'ceil');
 
@@ -107,7 +107,7 @@
 
     const countdown = dayOfRange(now, newYearStart, 'floor');
 
-    const daysTo25 = dayOfRange(now, birthDayOf25, 'top');
+    const daysTo30 = dayOfRange(now, birthDayOf30, 'top');
 
     const yearEl = document.getElementById('year');
     const zeroDayEl = document.getElementById('zero-day');
@@ -124,7 +124,7 @@
     const careerDayEl = document.getElementById('career-day');
     const countdownWrapperEl = document.getElementById('countdown-wrapper');
     const countDownEl = document.getElementById('countdown');
-    const daysTo25El = document.getElementById('days-to-25');
+    const daysTo30El = document.getElementById('days-to-30');
 
     yearEl.innerText = myAgeYear;
     zeroDayEl.innerText = myAgeDay;
@@ -140,7 +140,7 @@
     careerYearEl.innerText = careerYear;
     careerDayEl.innerText = careerDay;
     countDownEl.innerText = countdown;
-    daysTo25El.innerText = daysTo25;
+    daysTo30El.innerText = daysTo30 > 365 ? `${Math.floor(daysTo30 / 365)}年${daysTo30 % 365}` : daysTo30;
 
     if(countdown > 120) {
       countdownWrapperEl.style.display = 'none';
