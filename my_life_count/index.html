@@ -202,7 +202,7 @@
     ctx.lineJoin = 'round';
     ctx.lineWidth = opt.thickness;
     ctx.strokeStyle = opt.strokeColor;
-    ctx.globalAlpha = opt.level;
+    // ctx.globalAlpha = opt.level;
 
     var Point = function(config){
       this.anchorX = config.x;
@@ -278,9 +278,8 @@
       }
       ctx.lineTo(-opt.range.x - opt.thickness, ch + opt.thickness);
       ctx.lineTo(cw + opt.range.x + opt.thickness, ch + opt.thickness);
-      ctx.closePath();   
-      // ctx.fillStyle = 'hsl('+(tick/2)+', 80%, 60%)';
-      ctx.fillStyle = 'teal';
+      ctx.closePath();
+      ctx.fillStyle = '#59bff9';
       ctx.fill();  
       ctx.stroke();
     };
